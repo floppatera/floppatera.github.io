@@ -1,23 +1,299 @@
-<html>
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
 <head>
-	<title>
-KEMO	</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>كمال الدين | البوابة الرئيسية</title>
 
-	<style>
-	* { font-family: verdana; font-size: 10pt; COLOR: gray; }
-	b { font-weight: bold; }
-	table { height: 50%; border: 1px solid gray;}
-	td { text-align: center; padding: 25;}
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;800&display=swap" rel="stylesheet">
 
-	</style>
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Cairo',sans-serif;
+}
+
+body{
+    min-height:100vh;
+    overflow:hidden;
+    background:linear-gradient(-45deg,#0f172a,#1e3a8a,#0f766e,#1e293b);
+    background-size:400% 400%;
+    animation:bgMove 12s ease infinite;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+}
+
+@keyframes bgMove{
+    0%{background-position:0% 50%}
+    50%{background-position:100% 50%}
+    100%{background-position:0% 50%}
+}
+
+.particles{
+    position:fixed;
+    inset:0;
+    overflow:hidden;
+}
+
+.particles span{
+    position:absolute;
+    width:8px;
+    height:8px;
+    border-radius:50%;
+    background:rgba(255,255,255,.5);
+    animation:float 10s linear infinite;
+}
+
+@keyframes float{
+    from{
+        transform:translateY(100vh);
+        opacity:0;
+    }
+    20%{
+        opacity:1;
+    }
+    to{
+        transform:translateY(-100px);
+        opacity:0;
+    }
+}
+
+.card{
+    width:95%;
+    max-width:950px;
+    padding:45px;
+    border-radius:30px;
+    background:rgba(255,255,255,.08);
+    backdrop-filter:blur(18px);
+    border:1px solid rgba(255,255,255,.15);
+    box-shadow:0 20px 60px rgba(0,0,0,.35);
+    color:#fff;
+    text-align:center;
+    z-index:2;
+}
+
+.logo{
+    width:110px;
+    height:110px;
+    margin:auto;
+    border-radius:50%;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    background:linear-gradient(135deg,#3b82f6,#06b6d4);
+    font-size:45px;
+    font-weight:800;
+    margin-bottom:20px;
+    box-shadow:0 0 35px rgba(59,130,246,.5);
+}
+
+h1{
+    font-size:42px;
+    margin-bottom:10px;
+}
+
+.subtitle{
+    color:#d1d5db;
+    margin-bottom:40px;
+    font-size:18px;
+}
+
+.options{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+    gap:25px;
+}
+
+.option{
+    background:rgba(255,255,255,.07);
+    border:1px solid rgba(255,255,255,.1);
+    border-radius:22px;
+    padding:30px;
+    transition:.4s;
+    cursor:pointer;
+}
+
+.option:hover{
+    transform:translateY(-10px);
+    background:rgba(255,255,255,.12);
+}
+
+.icon{
+    font-size:55px;
+    margin-bottom:15px;
+}
+
+.option h2{
+    margin-bottom:10px;
+}
+
+.option p{
+    color:#d1d5db;
+    font-size:15px;
+    margin-bottom:20px;
+}
+
+.btn{
+    border:none;
+    padding:12px 25px;
+    border-radius:12px;
+    color:white;
+    font-size:16px;
+    cursor:pointer;
+    transition:.3s;
+}
+
+.dev{
+    background:linear-gradient(135deg,#2563eb,#06b6d4);
+}
+
+.mora{
+    background:linear-gradient(135deg,#10b981,#22c55e);
+}
+
+.btn:hover{
+    transform:scale(1.05);
+}
+
+.footer{
+    margin-top:35px;
+    color:#cbd5e1;
+    font-size:14px;
+}
+
+.version{
+    display:inline-block;
+    margin-top:10px;
+    background:rgba(255,255,255,.1);
+    padding:8px 16px;
+    border-radius:30px;
+    font-size:13px;
+}
+
+.loader{
+    position:fixed;
+    inset:0;
+    background:#020617;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    flex-direction:column;
+    color:white;
+    z-index:9999;
+    transition:1s;
+}
+
+.spinner{
+    width:70px;
+    height:70px;
+    border:5px solid rgba(255,255,255,.2);
+    border-top:5px solid white;
+    border-radius:50%;
+    animation:spin 1s linear infinite;
+    margin-bottom:20px;
+}
+
+@keyframes spin{
+    to{
+        transform:rotate(360deg);
+    }
+}
+
+.hide{
+    opacity:0;
+    visibility:hidden;
+}
+
+</style>
 </head>
 <body>
-<center>
-<br><br><br><br>
 
-<br><br>
+<div class="loader" id="loader">
+    <div class="spinner"></div>
+    <h3>جاري تحميل البوابة...</h3>
+</div>
 
-</center>
+<div class="particles" id="particles"></div>
+
+<div class="card">
+
+    <div class="logo">ك</div>
+
+    <h1>مرحباً كمال الدين</h1>
+
+    <p class="subtitle">
+        اختر وجهتك للانتقال إلى الموقع المطلوب
+    </p>
+
+    <div class="options">
+
+        <div class="option">
+            <div class="icon">💻</div>
+            <h2>نقطة تطوير</h2>
+            <p>
+                منصة التطوير والخدمات التقنية والحلول البرمجية.
+            </p>
+
+            <button class="btn dev" onclick="goDevPoint()">
+                دخول الموقع
+            </button>
+        </div>
+
+        <div class="option">
+            <div class="icon">👕</div>
+            <h2>مورا كيدز وير</h2>
+            <p>
+                متجر ملابس الأطفال ومنتجات الموضة الحديثة.
+            </p>
+
+            <button class="btn mora" onclick="goMoraKids()">
+                دخول الموقع
+            </button>
+        </div>
+
+    </div>
+
+    <div class="footer">
+        © 2026 KAMAL ELDIN PORTAL
+        <br>
+        <span class="version">Premium Edition</span>
+    </div>
+
+</div>
+
+<script>
+
+window.onload = () =>{
+    setTimeout(()=>{
+        document.getElementById("loader").classList.add("hide");
+    },1800);
+};
+
+function goDevPoint(){
+    window.location.href="https://YOUR-DEVPOINT-LINK.COM";
+}
+
+function goMoraKids(){
+    window.location.href="https://YOUR-MORAKIDS-LINK.COM";
+}
+
+const particles = document.getElementById("particles");
+
+for(let i=0;i<40;i++){
+    let dot=document.createElement("span");
+
+    dot.style.left=Math.random()*100+"%";
+    dot.style.animationDuration=(5+Math.random()*10)+"s";
+    dot.style.animationDelay=Math.random()*5+"s";
+
+    particles.appendChild(dot);
+}
+
+</script>
+
 </body>
-
 </html>
